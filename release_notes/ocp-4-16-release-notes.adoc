@@ -1044,6 +1044,8 @@ In the following tables, features are marked with the following statuses:
 
 * {run-once-operator} (RODOO) cannot be installed on clusters managed by the Hypershift Operator. (link:https://issues.redhat.com/browse/OCPBUGS-17533[*OCPBUGS-17533*])
 
+* When mirroring operator catalogs, `oc-mirror` rebuilds the catalogs and regenerates their internal cache according to `imagesetconfig` catalog filtering specifications. This operation requires the use of the `opm` binary found within the catalogs. In 4.15, operator catalogs include the `opm` RHEL 9 binary, causing the mirroring process to fail when running on RHEL 8 systems. (link:https://issues.redhat.com/browse/OCPBUGS-31536[*OCPBUGS-31536])
+
 [id="ocp-telco-ran-4-15-known-issues"]
 
 [id="ocp-telco-core-4-15-known-issues"]
