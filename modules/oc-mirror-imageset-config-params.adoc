@@ -8,7 +8,7 @@
 [id="oc-mirror-imageset-config-params_{context}"]
 = Image set configuration parameters
 
-The oc-mirror plugin requires an image set configuration file that defines what images to mirror. The following table lists the available parameters for the `ImageSetConfiguration` resource.
+The oc-mirror plugin v1 requires an image set configuration file that defines what images to mirror. The following table lists the available parameters for the `ImageSetConfiguration` resource.
 
 // TODO: Consider adding examples for the general "Object" params
 
@@ -20,24 +20,28 @@ The oc-mirror plugin requires an image set configuration file that defines what 
 |Values
 
 |`apiVersion`
-|The API version for the `ImageSetConfiguration` content.
-|String. For example: `mirror.openshift.io/v1alpha2`.
+|The API version of the `ImageSetConfiguration` content
+|String
+Example: 
+`mirror.openshift.io/v1alpha2`
 
 ifndef::microshift[]
 
 |`archiveSize`
-|The maximum size, in GiB, of each archive file within the image set.
-|Integer. For example: `4`
+|The maximum size, in GiB, of each archive file within the image set
+|Integer 
+Example: `4`
 
 endif::microshift[]
 
 |`mirror`
-|The configuration of the image set.
+|The configuration of the image set
 |Object
 
 |`mirror.additionalImages`
-|The additional images configuration of the image set.
-|Array of objects. For example:
+|The additional images configuration of the image set
+|Array of objects 
+Example:
 
 [source,yaml]
 ----
@@ -46,22 +50,25 @@ additionalImages:
 ----
 
 |`mirror.additionalImages.name`
-|The tag or digest of the image to mirror.
-|String. For example: `registry.redhat.io/ubi8/ubi:latest`
+|The tag or digest of the image to mirror
+|String 
+Example: `registry.redhat.io/ubi8/ubi:latest`
 
 |`mirror.blockedImages`
-|The full tag, digest, or pattern of images to block from mirroring.
-|Array of strings. For example: `docker.io/library/alpine`
+|The full tag, digest, or pattern of images to block from mirroring
+|Array of strings 
+Example: `docker.io/library/alpine`
 
 ifndef::microshift[]
 
 |`mirror.helm`
-|The helm configuration of the image set. Note that the oc-mirror plugin supports only helm charts that do not require user input when rendered.
+|The helm configuration of the image set. The oc-mirror plugin supports only helm charts that do not require user input when rendered.
 |Object
 
 |`mirror.helm.local`
-|The local helm charts to mirror.
-|Array of objects. For example:
+|The local helm charts to mirror
+|Array of objects 
+Example:
 
 [source,yaml]
 ----
@@ -71,16 +78,18 @@ local:
 ----
 
 |`mirror.helm.local.name`
-|The name of the local helm chart to mirror.
-|String. For example: `podinfo`.
+|The name of the local helm chart to mirror
+|String. For example, `podinfo`.
 
 |`mirror.helm.local.path`
 |The path of the local helm chart to mirror.
-|String. For example: `/test/podinfo-5.0.0.tar.gz`.
+|String 
+Example: `/test/podinfo-5.0.0.tar.gz`
 
 |`mirror.helm.repositories`
-|The remote helm repositories to mirror from.
-|Array of objects. For example:
+|The remote helm repositories to mirror from
+|Array of objects 
+Example:
 
 [source,yaml]
 ----
@@ -93,30 +102,35 @@ repositories:
 ----
 
 |`mirror.helm.repositories.name`
-|The name of the helm repository to mirror from.
-|String. For example: `podinfo`.
+|The name of the helm repository to mirror from
+|String 
+Example: `podinfo`
 
 |`mirror.helm.repositories.url`
-|The URL of the helm repository to mirror from.
-|String. For example: [x-]`https://example.github.io/podinfo`.
+|The URL of the helm repository to mirror from
+|String 
+Example: [x-]`https://example.github.io/podinfo`.
 
 |`mirror.helm.repositories.charts`
-|The remote helm charts to mirror.
-|Array of objects.
+|The remote helm charts to mirror
+|Array of objects
 
 |`mirror.helm.repositories.charts.name`
-|The name of the helm chart to mirror.
-|String. For example: `podinfo`.
+|The name of the helm chart to mirror
+|String 
+Example: `podinfo`
 
 |`mirror.helm.repositories.charts.version`
-|The version of the named helm chart to mirror.
-|String. For example: `5.0.0`.
+|The version of the named helm chart to mirror
+|String 
+Example: `5.0.0`
 
 endif::microshift[]
 
 |`mirror.operators`
-|The Operators configuration of the image set.
-|Array of objects. For example:
+|The Operators configuration of the image set
+|Array of objects 
+Example:
 
 [source,yaml,subs="attributes+"]
 ----
@@ -128,16 +142,18 @@ operators:
 ----
 
 |`mirror.operators.catalog`
-|The Operator catalog to include in the image set.
-|String. For example: `registry.redhat.io/redhat/redhat-operator-index:v4.15`.
+|The Operator catalog to include in the image set
+|String 
+Example: `registry.redhat.io/redhat/redhat-operator-index:v4.15`
 
 |`mirror.operators.full`
-|When `true`, downloads the full catalog, Operator package, or Operator channel.
+|When `true` this parameter downloads the full catalog, Operator package, or Operator channel
 |Boolean. The default value is `false`.
 
 |`mirror.operators.packages`
-|The Operator packages configuration.
-|Array of objects. For example:
+|The Operator packages configuration
+|Array of objects 
+Example:
 
 [source,yaml,subs="attributes+"]
 ----
@@ -150,35 +166,48 @@ operators:
 
 |`mirror.operators.packages.name`
 |The Operator package name to include in the image set
-|String. For example: `elasticsearch-operator`.
+|String 
+Example: `elasticsearch-operator`
 
 |`mirror.operators.packages.channels`
-|The Operator package channel configuration.
+|The Operator package channel configuration
 |Object
 
 |`mirror.operators.packages.channels.name`
-|The Operator channel name, unique within a package, to include in the image set.
-|String. For example: `fast` or `stable-v4.15`.
+|The Operator channel name, unique within a package, to include in the image set
+|String
+Example:`fast` or `stable-v4.15`
 
 |`mirror.operators.packages.channels.maxVersion`
-|The highest version of the Operator mirror across all channels in which it exists. See the following note for further information.
-|String. For example: `5.2.3-31`
+|The highest version of the Operator mirror across all channels in which it exists. See the note in the beginning of the table for further information.
+|String 
+Example: `5.2.3-31`
 
 |`mirror.operators.packages.channels.minBundle`
 |The name of the minimum bundle to include, plus all bundles in the update graph to the channel head. Set this field only if the named bundle has no semantic version metadata.
-|String. For example: `bundleName`
+|String 
+Example: `bundleName`
 
 |`mirror.operators.packages.channels.minVersion`
-|The lowest version of the Operator to mirror across all channels in which it exists. See the following note for further information.
-|String. For example: `5.2.3-31`
+|The lowest version of the Operator to mirror across all channels in which it exists. See the note in the beginning of the table for further information.
+|String 
+Example: `5.2.3-31`
+
+|`mirrors.operators.packages.defaultChannel`
+|The `defaultChannel` overrides the channel that is selected as default for this Operator in the catalog.
+|String 
+Example: `stable-5.8`
+See "Use case: Including an operator version that is not available in the default channel" for an example.
 
 |`mirror.operators.packages.maxVersion`
-|The highest version of the Operator to mirror across all channels in which it exists. See the following note for further information.
-|String. For example: `5.2.3-31`.
+|The highest version of the Operator to mirror in this channel. See the following note for further information.
+|String 
+Example: `5.2.3-31`
 
 |`mirror.operators.packages.minVersion`
-|The lowest version of the Operator to mirror across all channels in which it exists. See the following note for further information.
-|String. For example: `5.2.3-31`.
+|The lowest version of the Operator to mirror in this channel. See the note that follows the table for further information.
+|String 
+Example: `5.2.3-31`
 
 |`mirror.operators.skipDependencies`
 |If `true`, dependencies of bundles are not included.
@@ -186,28 +215,32 @@ operators:
 
 |`mirror.operators.targetCatalog`
 |An alternative name and optional namespace hierarchy to mirror the referenced catalog as.
-|String. For example: `my-namespace/my-operator-catalog`
+|String 
+Example: `my-namespace/my-operator-catalog`
 
 |`mirror.operators.targetName`
 |An alternative name to mirror the referenced catalog as.
 
 The `targetName` parameter is deprecated. Use the `targetCatalog` parameter instead.
 
-|String. For example: `my-operator-catalog`
+|String 
+Example: `my-operator-catalog`
 
 |`mirror.operators.targetTag`
 |An alternative tag to append to the `targetName` or `targetCatalog`.
-|String. For example: `v1`
+|String 
+Example: `v1`
 
 ifndef::microshift[]
 
 |`mirror.platform`
-|The platform configuration of the image set.
+|The platform configuration of the image set
 |Object
 
 |`mirror.platform.architectures`
 |The architecture of the platform release payload to mirror.
-|Array of strings. For example:
+|Array of strings 
+Example:
 
 [source,yaml]
 ----
@@ -222,8 +255,9 @@ architectures:
 The default value is `amd64`. The value `multi` ensures that the mirroring is supported for all available architectures, eliminating the need to specify individual architectures.
 
 |`mirror.platform.channels`
-|The platform channel configuration of the image set.
-|Array of objects. For example:
+|The platform channel configuration of the image set
+|Array of objects 
+Example:
 
 [source,yaml,subs="attributes+"]
 ----
@@ -237,24 +271,28 @@ channels:
 |Boolean. The default value is `false`.
 
 |`mirror.platform.channels.name`
-|The name of the release channel.
-|String. For example: `stable-4.15`
+|The name of the release channel
+|String 
+Example:`stable-4.15`
 
 |`mirror.platform.channels.minVersion`
 |The minimum version of the referenced platform to be mirrored.
-|String. For example: `4.12.6`
+|String 
+Example:`4.12.6`
 
 |`mirror.platform.channels.maxVersion`
-|The highest version of the referenced platform to be mirrored.
-|String. For example: `4.15.1`
+|The highest version of the referenced platform to be mirrored
+|String 
+Example:`4.15.1`
 
 |`mirror.platform.channels.shortestPath`
-|Toggles shortest path mirroring or full range mirroring.
+|Toggles shortest path mirroring or full range mirroring
 |Boolean. The default value is `false`.
 
 |`mirror.platform.channels.type`
-|The type of the platform to be mirrored.
-|String. For example: `ocp` or `okd`. The default is `ocp`.
+|The type of the platform to be mirrored
+|String 
+Example:`ocp` or `okd`. The default is `ocp`.
 
 |`mirror.platform.graph`
 |Indicates whether the OSUS graph is added to the image set and subsequently published to the mirror.
@@ -263,24 +301,26 @@ channels:
 endif::microshift[]
 
 |`storageConfig`
-|The back-end configuration of the image set.
+|The back-end configuration of the image set
 |Object
 
 |`storageConfig.local`
-|The local back-end configuration of the image set.
+|The local back-end configuration of the image set
 |Object
 
 |`storageConfig.local.path`
-|The path of the directory to contain the image set metadata.
-|String. For example: `./path/to/dir/`.
+|The path of the directory to contain the image set metadata
+|String 
+Example:`./path/to/dir/`
 
 |`storageConfig.registry`
-|The registry back-end configuration of the image set.
+|The registry back-end configuration of the image set
 |Object
 
 |`storageConfig.registry.imageURL`
 |The back-end registry URI. Can optionally include a namespace reference in the URI.
-|String. For example: `quay.io/myuser/imageset:metadata`.
+|String 
+Example:`quay.io/myuser/imageset:metadata`
 
 |`storageConfig.registry.skipTLS`
 |Optionally skip TLS verification of the referenced back-end registry.
@@ -292,7 +332,7 @@ endif::microshift[]
 ====
 Using the `minVersion` and `maxVersion` properties to filter for a specific Operator version range can result in a multiple channel heads error. The error message states that there are `multiple channel heads`. This is because when the filter is applied, the update graph of the Operator is truncated.
 
-Operator Lifecycle Manager requires that every Operator channel contains versions that form an update graph with exactly one end point, that is, the latest version of the Operator. When the filter range is applied, that graph can turn into two or more separate graphs or a graph that has more than one end point.
+Operator Lifecycle Manager [OLM] requires that every Operator channel contains versions that form an update graph with exactly one end point, that is, the latest version of the Operator. When the filter range is applied, that graph can turn into two or more separate graphs or a graph that has more than one end point.
 
 To avoid this error, do not filter out the latest version of an Operator. If you still run into the error, depending on the Operator, either the `maxVersion` property must be increased or the `minVersion` property must be decreased. Because every Operator graph can be different, you might need to adjust these values until the error resolves.
 ====
