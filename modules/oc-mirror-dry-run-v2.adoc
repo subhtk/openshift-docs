@@ -15,12 +15,12 @@ Verify your image set configuration by performing a dry run without mirroring an
 +
 [source,terminal]
 ----
-$ oc mirror -c <image_set_config_yaml> --from file://<oc_mirror_workspace_path> docker://<mirror_registry_url> --dry-run --v2
+$ oc mirror -c <image_set_config_yaml> file://<oc_mirror_workspace_path> docker://<mirror_registry_url> --dry-run --v2
 ----
 Where:
 - `<image_set_config_yaml>`: Use the image set configuration file that you just created.
 - `<oc_mirror_workspace_path>`: Insert the address of the workspace path.
-- `<mirror_registry_url>`: Insert the URL or address of the remote container registry from which images will be deleted.
+- `<mirror_registry_url>`: Insert the URL or address of the remote container registry from which images will be mirrored or deleted.
 +
 .Example output
 [source,terminal]

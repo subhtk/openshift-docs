@@ -39,7 +39,7 @@ The following tables describe the `oc mirror` subcommands and flags for oc-mirro
 |Specifies the path to an image set configuration file.
 
 |`--dest-tls-verify`
-|Requires HTTPS and verifies certificates when accessing the container registry or daemon.
+|Requires HTTPS and verifies certificates when accessing the container registry or daemon. The default is `true`.
 
 |`--dry-run`
 |Prints actions without mirroring images
@@ -50,7 +50,7 @@ The following tables describe the `oc mirror` subcommands and flags for oc-mirro
 |`-h`, `--help`
 |Displays help
 
-|`--loglevel` 
+|`--loglevel string` 
 |Displays string log levels. Supported values include info, debug, trace, error. The default is `info`.
 
 |`-p`, `--port` 
@@ -76,5 +76,89 @@ The following tables describe the `oc mirror` subcommands and flags for oc-mirro
 
 |`--workspace` 
 |Determines string oc-mirror plugin v2 workspace where resources and internal artifacts are generated.
+
+|`--cache-dir string` 
+|oc-mirror cache directory location. The default is `$HOME`.
+
+|`--image-timeout duration`
+|Timeout for mirroring an image. The default is 10m0s.
+
+|`--parallel-images unit`  
+|Indicates the number of images mirrored in parallel. The default is 8.
+
+|`--parallel-layers unit`           
+|Indicates the number of image layers mirrored in parallel. The default is 10.
+
+|`--retry-delay duration` 
+|Delay between 2 retries. The default is 1s.
+
+|`--retry-times int` 
+|The number of times to possibly retry. The default is 2.
+
+|`--rootless-storage-path string` 
+|Override the default container rootless storage path (usually in `etc/co)
+
+|===
+
+
+.oc mirror delete command flags
+[cols="1,2",options="header"]
+|===
+|Flag
+|Description
+
+|`--authfile string` 
+|Path of the authentication file. The default is `${XDG_RUNTIME_DIR}/containers/auth.json`.
+
+|`--cache-dir string` 
+|oc-mirror cache directory location. The default is `$HOME`.
+
+|`-c`, `--config string` 
+|Path to delete imageset configuration file.
+ 
+|`--delete-id string` 
+|Used to differentiate between versions for files created by the delete functionality
+
+|`--delete-v1-images` 
+|Used during the migration, along with `--generate`, in order to target images previously mirrored with oc-mirror plugin v1.
+
+|`--delete-yaml-file string` 
+|If set will use the generated or updated yaml file to delete contents.
+
+|`--dest-tls-verify` 
+|Requires HTTPS and verifies certificate when talking to the container registry or daemon. The default is true.
+
+|`--force-cache-delete` 
+|Used to force delete the local cache manifests and blobs.
+
+|`--generate` 
+|Used to generate the delete yaml for the list of manifests and blobs , used in the step to actually delete from local cahce and remote registry.
+
+|`-h`, `--help` 
+|Help for delete
+
+|`--log-level string` 
+|Log level one of (info, debug, trace, error). The default is "info".
+
+|`--parallel-images unit `
+|Indicates the number of images deleted in parallel. The default is 8.
+
+|`--parallel-layers unit `          
+|Indicates the number of image layers mirrored in parallel. The default is 10.
+
+|`-p, --port `
+|unit16 HTTP port used by oc-mirror's local storage instance The default is 55000.
+
+|`--retry-delay` 
+|Duration delay between 2 retries. The default is 1s.
+
+|`--retry-times int `
+|The number of times to possibly retry. The default is 2.
+
+|`--src-tls-verify `
+|Requires HTTPS and verifies certificate when talking to the container registry or daemon. The default is true.
+
+|`--workspace string` 
+|oc-mirror workspace where resources and internal artifacts are generated.
 
 |===

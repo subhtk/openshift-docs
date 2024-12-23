@@ -47,7 +47,7 @@ delete:
 
 [IMPORTANT]
 ====
-Consider using the mirror-to-disk and disk-to-mirror workflows to reduce mirroring issues.
+Consider using the mirror-to-disk and disk-to-mirror workflows to reduce deleting issues.
 ====
 
 oc-mirror plugin v2 deletes only the manifests of the images, which does not reduce the storage occupied in the registry.

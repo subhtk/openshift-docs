@@ -263,7 +263,9 @@ Example: `ocp` or `okd`. The default is `ocp`.
 |`mirror.platform.graph`
 |Indicates whether the OSUS graph is added to the image set and subsequently published to the mirror.
 |Boolean
-The default value is `false`
+The default value is `false`.
+ntainers/storage.conf`)
+|
 
 |===
 

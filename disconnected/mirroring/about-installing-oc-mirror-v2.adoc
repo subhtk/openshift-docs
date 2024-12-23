@@ -8,10 +8,7 @@ toc::[]
 
 You can run your cluster in a disconnected environment if you install the cluster from a mirrored set of {product-title} container images in a private registry. This registry must be running whenever your cluster is running.
 
-Just as you can use the `oc-mirror` OpenShift CLI (`oc`) plugin, you can also use oc-mirror plugin v2 to mirror images to a mirror registry in your fully or partially disconnected environments. To download the required images from the official Red{nbsp}Hat registries, you must run oc-mirror plugin v2 from a system with internet connectivity.
-
-:FeatureName: oc-mirror plugin v2
-include::snippets/technology-preview.adoc[]
+You can use oc-mirror plugin v2 to mirror images to a mirror registry in your fully or partially disconnected environments. To download the required images from the official Red{nbsp}Hat registries, you must run oc-mirror plugin v2 from a system with internet connectivity.
 
 // About oc-mirror plugin v2
 include::modules/oc-mirror-v2-about.adoc[leveloffset=+1]
