@@ -1,0 +1,68 @@
+//Module included in the following assemblies:
+//
+// * installing/installing_azure/enabling-disk-encryption-sets-azure.adoc
+
+:_mod-docs-content-type: PROCEDURE
+[id="preparing-disk-encryption-sets-day2-operator"]
+= Preparing an Azure disk encryption set for day 2 Operator
+
+The {product-title} installer can use an existing disk encryption Sst with a user-managed key. To enable this feature, you can create a disk encryption set in Azure and provide the key to the installer.
+
+.Prerequisites
+
+* Ensure that the `EncryptionAtHost` feature is enabled for your Azure subscription. You can verify this in the Azure portal or by running the following command:
++
+[source,terminal]
+----
+$ az feature show --namespace Microsoft.Compute --name EncryptionAtHost
+----
+
+* Verify that the cluster resource group has the necessary permissions to update VM properties.
+
+.Procedure
+
+. Mark the node from the `encryptionAtHost` cluster resource group as unschedulable by running the following command:
++
+[source,terminal]
+----
+$ oc adm cordon <node_name>
+----
+
+. Drain the node to safely migrate workloads before deallocating the VM by running the following command:
++
+[source,terminal]
+----
+$ oc adm drain <node_name> --ignore-daemonsets --delete-emptydir-data --force
+----
+
+. Deallocate the node by running the following command:
++
+[source,terminal]
+----
+$ az vm deallocate -n <node_name> -g <cluster_resource_group>
+----
+
+. Enable `encryptionAtHost` by running the following command:
++
+[source,terminal]
+----
+$ az vm update -n <node_name> -g <cluster_resource_group> --set securityProfile.encryptionAtHost=true
+----
+
+. Restart the node by running the following command:
++
+[source,terminal]
+----
+$ az vm start -n <node_name> -g <cluster_resource_group>
+----
+
+. Mark the node as schedulable by running the following command:
++
+[source,terminal]
+----
+$ oc adm uncordon <node_name>
+----
+
+. Verify that all operators are available.
+
+. Repeat these steps for all nodes in the `encryptionAtHost` cluster resource group.
