@@ -16,9 +16,3 @@ include::modules/cli-configuring-completion.adoc[leveloffset=+2]
 
 // Enabling tab completion for Zsh
 include::modules/cli-configuring-completion-zsh.adoc[leveloffset=+2]
-
-[id="cli-accessing-kubeconfig-cli_{context}"]
-== Accessing the `kubeconfig`
-
-
-include::modules/cli-configuring-kubeconfig-oc-cli.adoc[leveloffset=1]
